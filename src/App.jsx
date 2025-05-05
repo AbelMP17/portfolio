@@ -7,7 +7,7 @@ import Projects from "./components/Projects";
 import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import Gracias from "./pages/Gracias";
+import Gracias from "./pages/Gracias.jsx";
 
 function App() {
   return (
