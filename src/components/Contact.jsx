@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -6,29 +6,28 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const sectionRef = useRef(null);
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        sectionRef.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }, sectionRef);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-      if (res.ok) {
-        setSubmitted(true);
-        setFormData({ name: "", email: "", message: "" });
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section
@@ -40,7 +39,14 @@ export default function Contact() {
         <span className="text-cyan-400">Contáctame</span>
       </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-8">
+      <form
+        action="https://formsubmit.co/abelmp890@gmail.com"
+        method="POST"
+        className="space-y-8"
+      >
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://.com/gracias" />
+
         {/* Nombre */}
         <div className="relative">
           <input
@@ -48,8 +54,6 @@ export default function Contact() {
             name="name"
             placeholder=" "
             required
-            value={formData.name}
-            onChange={handleChange}
             className="peer w-full px-4 py-3 bg-transparent border border-white/20 rounded-md text-white focus:outline-none focus:border-cyan-400"
           />
           <label
@@ -66,8 +70,6 @@ export default function Contact() {
             name="email"
             placeholder=" "
             required
-            value={formData.email}
-            onChange={handleChange}
             className="peer w-full px-4 py-3 bg-transparent border border-white/20 rounded-md text-white focus:outline-none focus:border-cyan-400"
           />
           <label
@@ -83,8 +85,6 @@ export default function Contact() {
             name="message"
             placeholder=" "
             required
-            value={formData.message}
-            onChange={handleChange}
             rows="5"
             className="peer w-full px-4 py-3 bg-transparent border border-white/20 rounded-md text-white focus:outline-none focus:border-cyan-400 resize-none"
           ></textarea>
@@ -101,10 +101,6 @@ export default function Contact() {
         >
           Enviar
         </button>
-
-        {submitted && (
-          <p className="text-green-400 font-medium pt-4">Gracias, tu mensaje ha sido enviado.</p>
-        )}
       </form>
     </section>
   );
