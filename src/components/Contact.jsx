@@ -45,7 +45,7 @@ export default function Contact() {
         className="space-y-8"
       >
         <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_next" value="https://.com/gracias" />
+        <input type="hidden" name="_next" value="https://devabel.vercel.app/gracias" />
 
         {/* Nombre */}
         <div className="relative">

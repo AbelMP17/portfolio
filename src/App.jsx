@@ -1,27 +1,37 @@
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import Skills from './components/Skills'
-import Projects from './components/Projects'
-import Contact from './components/Contact'
-import FloatingDevices from './components/FloatingDevices'
-import Experience from './components/Experience'
-import Footer from './components/Footer'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Skills from "./components/Skills";
+import Projects from "./components/Projects";
+import Experience from "./components/Experience";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import Gracias from "./pages/Gracias";
 
-export default function App() {
+function App() {
   return (
-    <div className="bg-black text-white min-h-screen">
+    <Router>
       <Navbar />
-      <main className="pt-20">
-        <Hero />
-        <About />
-        <FloatingDevices />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
-        <Footer />
-      </main>
-    </div>
-  )
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Hero />
+              <About />
+              <Skills />
+              <Projects />
+              <Experience />
+              <Contact />
+              <Footer />
+            </>
+          }
+        />
+        <Route path="/gracias" element={<Gracias />} />
+      </Routes>
+    </Router>
+  );
 }
+
+export default App;

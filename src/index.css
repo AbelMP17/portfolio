@@ -4,6 +4,8 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: black;
+  color: white;
 }
 
 @keyframes pulse-glow {
