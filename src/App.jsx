@@ -8,6 +8,8 @@ import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Gracias from "./pages/Gracias.jsx";
+import SkillsCanicas2D from "./components/SkillsCanicas2D.jsx";
+import SkillsSection from "./components/SkillsSection.jsx";
 
 function App() {
   return (
@@ -20,7 +22,7 @@ function App() {
             <>
               <Hero />
               <About />
-              <Skills />
+              <SkillsSection />
               <Projects />
               <Experience />
               <Contact />

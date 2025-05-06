@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import Tilt from "react-parallax-tilt";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -85,6 +85,36 @@ export default function Projects() {
     return () => ctx.revert();
   }, [activeTech]);
 
+  useEffect(() => {
+    const preventScroll = (e) => e.preventDefault();
+  
+    const cards = document.querySelectorAll(".project-card");
+  
+    cards.forEach((card) => {
+      card.addEventListener("touchstart", () => {
+        document.body.style.overflow = "hidden";
+      });
+  
+      card.addEventListener("touchend", () => {
+        document.body.style.overflow = "";
+      });
+  
+      card.addEventListener("touchmove", preventScroll, { passive: false });
+    });
+  
+    return () => {
+      cards.forEach((card) => {
+        card.removeEventListener("touchstart", () => {
+          document.body.style.overflow = "hidden";
+        });
+        card.removeEventListener("touchend", () => {
+          document.body.style.overflow = "";
+        });
+        card.removeEventListener("touchmove", preventScroll);
+      });
+    };
+  }, []);
+
   return (
     <section
       id="projects"
@@ -113,7 +143,7 @@ export default function Projects() {
       </div>
 
       {/* Tarjetas de proyectos */}
-      <div key={activeTech} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div key={activeTech} className="grid md:grid-cols-2 lg:grid-cols-3 gap-24 md:gap-8">
         {filteredProjects.map((project) => (
           <a
             key={project.link}

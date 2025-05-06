@@ -35,7 +35,7 @@ export default function Footer() {
             <Linkedin />
           </a>
           <a
-            href="mailto:abel@example.com"
+            href="mailto:abelmp890@gmail.com"
             className="hover:text-white transition"
             aria-label="Email"
           >

@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -6,6 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const sectionRef = useRef(null);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -29,6 +30,31 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
+  useEffect(() => {
+    const form = sectionRef.current.querySelector("form");
+    const inputs = form.querySelectorAll("input, textarea");
+
+    const validateForm = () => {
+      const isValid = Array.from(inputs).every((input) => input.checkValidity());
+      setIsFormValid(isValid);
+    };
+
+    inputs.forEach((input) => {
+      const toggleFilled = () => {
+        input.classList.toggle("filled", input.value.trim() !== "");
+      };
+      const markTouched = () => {
+        input.classList.add("touched");
+        toggleFilled();
+        validateForm();
+      };
+      toggleFilled();
+      input.addEventListener("input", toggleFilled);
+      input.addEventListener("input", validateForm);
+      input.addEventListener("blur", markTouched);
+    });
+  }, []);
+
   return (
     <section
       id="contact"
@@ -42,7 +68,8 @@ export default function Contact() {
       <form
         action="https://formsubmit.co/abelmp890@gmail.com"
         method="POST"
-        className="space-y-8"
+        className="space-y-8 relative"
+        noValidate
       >
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_next" value="https://devabel.vercel.app/gracias" />
@@ -54,13 +81,11 @@ export default function Contact() {
             name="name"
             placeholder=" "
             required
-            className="peer w-full px-4 py-3 bg-transparent border border-white/20 rounded-md text-white focus:outline-none focus:border-cyan-400"
+            className="floating-input peer w-full px-4 py-3 bg-transparent border border-white/20 rounded-md text-white focus:outline-none focus:border-cyan-400"
           />
-          <label
-            className="absolute left-4 top-3 text-gray-400 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-cyan-400 bg-black px-1"
-          >
-            Nombre
-          </label>
+          <label className="floating-label">Nombre</label>
+          <span className="valid-icon">✔️</span>
+          <span className="invalid-icon">❌</span>
         </div>
 
         {/* Email */}
@@ -70,13 +95,12 @@ export default function Contact() {
             name="email"
             placeholder=" "
             required
-            className="peer w-full px-4 py-3 bg-transparent border border-white/20 rounded-md text-white focus:outline-none focus:border-cyan-400"
+            pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+            className="floating-input peer w-full px-4 py-3 bg-transparent border border-white/20 rounded-md text-white focus:outline-none focus:border-cyan-400"
           />
-          <label
-            className="absolute left-4 top-3 text-gray-400 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-cyan-400 bg-black px-1"
-          >
-            Email
-          </label>
+          <label className="floating-label">Email</label>
+          <span className="valid-icon">✔️</span>
+          <span className="invalid-icon">❌</span>
         </div>
 
         {/* Mensaje */}
@@ -86,18 +110,19 @@ export default function Contact() {
             placeholder=" "
             required
             rows="5"
-            className="peer w-full px-4 py-3 bg-transparent border border-white/20 rounded-md text-white focus:outline-none focus:border-cyan-400 resize-none"
+            className="floating-input peer w-full px-4 py-3 bg-transparent border border-white/20 rounded-md text-white focus:outline-none focus:border-cyan-400 resize-none"
           ></textarea>
-          <label
-            className="absolute left-4 top-3 text-gray-400 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-cyan-400 bg-black px-1"
-          >
-            Mensaje
-          </label>
+          <label className="floating-label">Mensaje</label>
+          <span className="valid-icon">✔️</span>
+          <span className="invalid-icon">❌</span>
         </div>
 
         <button
           type="submit"
-          className="bg-cyan-500 hover:bg-cyan-400 text-black px-6 py-2 rounded-full font-semibold transition"
+          disabled={!isFormValid}
+          className={`px-6 py-2 rounded-full font-semibold transition text-black ${
+            isFormValid ? "bg-cyan-500 hover:bg-cyan-400" : "bg-gray-600 cursor-not-allowed"
+          }`}
         >
           Enviar
         </button>

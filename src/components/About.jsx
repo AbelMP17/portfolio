@@ -29,7 +29,7 @@ export default function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="max-w-5xl mx-auto px-4 py-20 text-center"
+      className="max-w-5xl mx-auto px-4 py-20 text-center scroll-mt-32"
     >
       <h2 className="text-3xl md:text-4xl font-bold mb-6">
         Sobre <span className="text-cyan-400">mí</span>
