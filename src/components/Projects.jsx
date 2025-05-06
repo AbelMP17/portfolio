@@ -86,34 +86,29 @@ export default function Projects() {
   }, [activeTech]);
 
   useEffect(() => {
-    const preventScroll = (e) => e.preventDefault();
+    if (typeof window === "undefined" || window.innerWidth >= 768) return;
   
+    const preventScroll = (e) => e.preventDefault();
     const cards = document.querySelectorAll(".project-card");
   
+    const lockScroll = () => (document.body.style.overflow = "hidden");
+    const unlockScroll = () => (document.body.style.overflow = "");
+  
     cards.forEach((card) => {
-      card.addEventListener("touchstart", () => {
-        document.body.style.overflow = "hidden";
-      });
-  
-      card.addEventListener("touchend", () => {
-        document.body.style.overflow = "";
-      });
-  
+      card.addEventListener("touchstart", lockScroll);
+      card.addEventListener("touchend", unlockScroll);
       card.addEventListener("touchmove", preventScroll, { passive: false });
     });
   
     return () => {
       cards.forEach((card) => {
-        card.removeEventListener("touchstart", () => {
-          document.body.style.overflow = "hidden";
-        });
-        card.removeEventListener("touchend", () => {
-          document.body.style.overflow = "";
-        });
+        card.removeEventListener("touchstart", lockScroll);
+        card.removeEventListener("touchend", unlockScroll);
         card.removeEventListener("touchmove", preventScroll);
       });
     };
-  }, []);
+  }, [filteredProjects]);
+  
 
   return (
     <section
