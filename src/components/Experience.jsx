@@ -6,22 +6,22 @@ gsap.registerPlugin(ScrollTrigger);
 
 const experiences = [
   {
-    title: "Frontend Developer Jr.",
-    company: "TechCorp",
-    date: "2023 - Presente",
-    description: "Desarrollo de interfaces responsivas con React, Tailwind y GSAP.",
+    title: "IT Systemns Administrator",
+    company: "Ubunet Telecom S.L",
+    date: "2024 - Presente",
+    description: "Administrador de sistemas, centralitas y telefonía IP como soporte N1 y N2",
   },
   {
     title: "Freelance Developer",
     company: "Proyectos personales",
-    date: "2022 - 2023",
-    description: "Creación de landings, portfolios y apps interactivas para clientes.",
+    date: "2023 - Presente",
+    description: "Creación de páginas de destino, carteras y aplicaciones interactivas para clientes que utilizan React, Tailwind y GSAP.",
   },
   {
-    title: "Diseñador UX/UI",
-    company: "Figma Studio",
-    date: "2021 - 2022",
-    description: "Diseño de interfaces modernas enfocadas en la experiencia de usuario.",
+    title: "Estudiante de Desarrollo Web",
+    company: "",
+    date: "2021 - 2023",
+    description: "Diseño de sitios web, desarrollo front-end y back-end.",
   },
 ];
 
