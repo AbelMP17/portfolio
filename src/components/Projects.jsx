@@ -7,31 +7,31 @@ gsap.registerPlugin(ScrollTrigger);
 
 const allProjects = [
   {
-    title: "Portfolio Personal",
-    description: "Una web moderna con React, Tailwind y animaciones con GSAP.",
+    title: "Landing + Shop",
+    description: "Una web moderna con React, Tailwind y animaciones con GSAP, lista para hacer pedidos a domicilio.",
     image: "/ksb.png",
     tech: ["React", "Tailwind", "GSAP", "LocalStorage"],
     link: "https://kloesmashburger.com/",
   },
   {
-    title: "App de Tareas",
-    description: "Gestor de tareas con CRUD, responsiva y guardado local.",
+    title: "Landing Simulada",
+    description: "Reconstrucción de una landing como Apple Store",
     image: "/iphone.png",
-    tech: ["React", "CSS", "LocalStorage"],
+    tech: ["React", "Tailwind", "Three.js"],
     link: "https://apple-landing-rouge.vercel.app/",
   },
   {
-    title: "Sitio con Three.js",
-    description: "Experimento visual con modelos 3D y scroll animado.",
+    title: "Landing para empresa de Construcción",
+    description: "Escaparate para empresa dedicada a la construcción y a reformas.",
     image: "/grupoasirel.png",
-    tech: ["Three.js", "React", "GSAP"],
+    tech: ["React", "Tailwind", "GSAP"],
     link: "https://grupoasirel.vercel.app/",
   },
   {
-    title: "Sitio con Three.js",
-    description: "Experimento visual con modelos 3D y scroll animado.",
+    title: "Landing ficticia",
+    description: "Experimento visual con scroll animado y efectos dinámicos.",
     image: "/brainwave.png",
-    tech: ["Three.js", "React", "GSAP"],
+    tech: ["React", "Tailwind", "GSAP"],
     link: "https://ai-landing-silk.vercel.app/",
   },
 ];
