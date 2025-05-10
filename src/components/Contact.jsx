@@ -84,8 +84,6 @@ export default function Contact() {
             className="floating-input peer w-full px-4 py-3 bg-transparent border border-white/20 rounded-md text-white focus:outline-none focus:border-cyan-400"
           />
           <label className="floating-label">Nombre</label>
-          <span className="valid-icon">✔️</span>
-          <span className="invalid-icon">❌</span>
         </div>
 
         {/* Email */}
@@ -99,8 +97,6 @@ export default function Contact() {
             className="floating-input peer w-full px-4 py-3 bg-transparent border border-white/20 rounded-md text-white focus:outline-none focus:border-cyan-400"
           />
           <label className="floating-label">Email</label>
-          <span className="valid-icon">✔️</span>
-          <span className="invalid-icon">❌</span>
         </div>
 
         {/* Mensaje */}
@@ -113,8 +109,6 @@ export default function Contact() {
             className="floating-input peer w-full px-4 py-3 bg-transparent border border-white/20 rounded-md text-white focus:outline-none focus:border-cyan-400 resize-none"
           ></textarea>
           <label className="floating-label">Mensaje</label>
-          <span className="valid-icon">✔️</span>
-          <span className="invalid-icon">❌</span>
         </div>
 
         <button

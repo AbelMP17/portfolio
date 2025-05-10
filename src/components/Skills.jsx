@@ -115,7 +115,7 @@ export default function Skills() {
     <section
       id="skills"
       ref={sectionRef}
-      className="max-w-6xl mx-auto px-4 py-20 text-center text-white"
+      className="max-w-6xl mx-auto px-4 py-10 text-center text-white"
     >
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
           {skills.map((skill, idx) => (

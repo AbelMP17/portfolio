@@ -24,9 +24,9 @@ export default function SkillsSection() {
   );
 
   return (
-    <section id="skills" className="relative">
+    <section ref={sectionRef} id="skills" className="relative">
       {/* Botón toggle solo en desktop */}
-      <h2  ref={sectionRef} className="text-3xl md:text-4xl font-bold text-center">
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
         Mis <span className="text-cyan-400">Habilidades</span>
       </h2>
       <div className="hidden md:flex justify-center items-center">

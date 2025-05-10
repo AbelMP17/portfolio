@@ -46,7 +46,7 @@ export default function Navbar() {
       indicatorRef.current.style.opacity = "1";
       indicatorRef.current.style.left = `${left}px`;
       indicatorRef.current.style.width = `${width}px`;
-      glowRef.current.style.opacity = "0.7";
+      glowRef.current.style.opacity = "0.9";
       glowRef.current.style.left = `${left + width / 2 - 50}px`;
     }
   }, [activeIndex]);
