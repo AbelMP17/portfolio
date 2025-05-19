@@ -37,7 +37,8 @@ export default function About() {
       <p className="text-gray-300 text-lg leading-relaxed max-w-3xl mx-auto">
         Soy un desarrollador web apasionado por crear interfaces modernas,
         animadas y atractivas. Me especializo en tecnologías como ReactJS,
-        TailwindCSS, GSAP y Three.js para llevar las ideas al siguiente nivel.
+        TailwindCSS, GSAP y Three.js para llevar las ideas a la realidad.
+Aunque actualmente trabajo de administrador de sistemas, centralita y telefonía IP, pero todo mi tiempo libre es invertido en hacer proyectos como landings u otros.
       </p>
     </section>
   )
