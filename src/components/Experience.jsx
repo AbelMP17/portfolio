@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const experiences = [
   {
-    title: "IT Systemns Administrator",
+    title: "IT Systems Administrator",
     company: "Ubunet Telecom S.L",
     date: "2024 - Presente",
     description: "Administrador de sistemas, centralitas y telefonía IP como soporte N1 y N2",
