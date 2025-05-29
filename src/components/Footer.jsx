@@ -26,7 +26,7 @@ export default function Footer() {
             <Github />
           </a>
           <a
-            href="https://linkedin.com/in/abelmartinez"
+            href="https://www.linkedin.com/in/abel-mart%C3%ADnez-peinado-868436259/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-white transition"
