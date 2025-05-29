@@ -92,7 +92,7 @@ export default function Hero() {
             href="#contact"
             className="hero-btn border border-white/20 px-6 py-2 rounded-full text-white hover:border-cyan-400 transition"
           >
-            Contáctame
+            Contacto
           </a>
         </div>
       </div>

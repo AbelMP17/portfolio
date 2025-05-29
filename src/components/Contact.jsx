@@ -62,7 +62,7 @@ export default function Contact() {
       className="max-w-3xl mx-auto px-4 py-20 text-white"
     >
       <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-        <span className="text-cyan-400">Contáctame</span>
+        <span className="text-cyan-400">Contacto</span>
       </h2>
 
       <form
