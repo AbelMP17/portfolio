@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState, useEffect } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import Tilt from "react-parallax-tilt";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -85,29 +85,6 @@ export default function Projects() {
     return () => ctx.revert();
   }, [activeTech]);
 
-  useEffect(() => {
-    if (typeof window === "undefined" || window.innerWidth >= 768) return;
-  
-    const preventScroll = (e) => e.preventDefault();
-    const cards = document.querySelectorAll(".project-card");
-  
-    const lockScroll = () => (document.body.style.overflow = "hidden");
-    const unlockScroll = () => (document.body.style.overflow = "");
-  
-    cards.forEach((card) => {
-      card.addEventListener("touchstart", lockScroll);
-      card.addEventListener("touchend", unlockScroll);
-      card.addEventListener("touchmove", preventScroll, { passive: false });
-    });
-  
-    return () => {
-      cards.forEach((card) => {
-        card.removeEventListener("touchstart", lockScroll);
-        card.removeEventListener("touchend", unlockScroll);
-        card.removeEventListener("touchmove", preventScroll);
-      });
-    };
-  }, [filteredProjects]);
   
 
   return (

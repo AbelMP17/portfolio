@@ -74,7 +74,7 @@ export default function Skills() {
         opacity: 1,
         y: 0,
         duration: 1,
-        ease: "power2.out",
+        ease: "bounce.inOut",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
