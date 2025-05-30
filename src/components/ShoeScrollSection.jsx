@@ -143,7 +143,7 @@ export default function ShoeScrollSection() {
         >
           <Canvas
           dpr={[1, 1.5]} // mínimo 1, máximo 1.5
-          tyle={{ touchAction: "none", pointerEvents: "none" }}
+          style={{ touchAction: "none", pointerEvents: "none" }}
           camera={{ position: [0, -6, 10], fov: 1 }}>
             <ambientLight intensity={0.5} />
             <Environment preset="city" />
