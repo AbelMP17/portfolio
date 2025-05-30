@@ -141,7 +141,9 @@ export default function ShoeScrollSection() {
           ref={wrapperRef2}
           className="sticky top-0 h-screen flex items-center justify-center pt-20 md:pt-40"
         >
-          <Canvas camera={{ position: [0, -6, 10], fov: 1 }} shadows>
+          <Canvas
+          style={{ touchAction: "none", pointerEvents: "none" }}
+          camera={{ position: [0, -6, 10], fov: 1 }} shadows>
             <ambientLight intensity={0.5} />
             <Environment preset="city" />
             <directionalLight position={[-10, 0, 0]} intensity={1} castShadow />
