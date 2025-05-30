@@ -142,11 +142,12 @@ export default function ShoeScrollSection() {
           className="sticky top-0 h-screen flex items-center justify-center pt-20 md:pt-40"
         >
           <Canvas
-          style={{ touchAction: "none", pointerEvents: "none" }}
-          camera={{ position: [0, -6, 10], fov: 1 }} shadows>
+          dpr={[1, 1.5]} // mínimo 1, máximo 1.5
+          tyle={{ touchAction: "none", pointerEvents: "none" }}
+          camera={{ position: [0, -6, 10], fov: 1 }}>
             <ambientLight intensity={0.5} />
             <Environment preset="city" />
-            <directionalLight position={[-10, 0, 0]} intensity={1} castShadow />
+            <directionalLight position={[-10, 0, 0]} intensity={1} />
             <ShoeModel rotationY={rotationY} isMobile={isMobile} />
             <OrbitControls
               enableZoom={false}
