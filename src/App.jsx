@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 import Gracias from "./pages/Gracias.jsx";
 import SkillsCanicas2D from "./components/SkillsCanicas2D.jsx";
 import SkillsSection from "./components/SkillsSection.jsx";
-import ShoeScrollSection from "./components/ShoeScrollSection.jsx";
+import ParallaxScrollSection from "./components/ParallaxScrollSection.jsx";
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
               <Hero />
               <About />
               <SkillsSection />
-              <ShoeScrollSection />
+              <ParallaxScrollSection />
               <Projects />
               <Experience />
               <Contact />
