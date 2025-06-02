@@ -37,11 +37,18 @@ export default function ParallaxScrollSection() {
   const bubleRef3 = useRef();
   const textRef = useRef();
   const gsapRef = useRef();
-  const rotationY = useRef(Math.PI / 4);
   const textRef2 = useRef();
+  const rotationY = useRef(Math.PI / 4);
 
-  // Detectamos si es móvil
   const [isMobile, setIsMobile] = useState(false);
+
+  const paragraph = "Interazción con objetos 3D";
+
+  const wrappedWords = paragraph.split(" ").map((word, i) => (
+    <span key={i} className="inline-block opacity-0 mr-[5px]">
+      {word}
+    </span>
+  ));
 
   useEffect(() => {
     const checkMobile = () => {
@@ -56,7 +63,6 @@ export default function ParallaxScrollSection() {
     let trigger;
 
     const ctx = gsap.context(() => {
-      // Rotación del objeto 3D
       trigger = ScrollTrigger.create({
         trigger: wrapperRef2.current,
         start: "top 60%",
@@ -72,7 +78,6 @@ export default function ParallaxScrollSection() {
         },
       });
 
-      // Movimiento del círculo negro (máscara)
       const xMove = isMobile ? 0 : 200;
       const yMove = isMobile ? 300 : -200;
 
@@ -94,6 +99,7 @@ export default function ParallaxScrollSection() {
           ease: "power2.out",
         }
       );
+
       gsap.fromTo(
         gsapRef.current,
         { opacity: 0, y: 200 },
@@ -110,7 +116,6 @@ export default function ParallaxScrollSection() {
         }
       );
 
-      // Sombra interna del círculo base
       gsap.fromTo(
         baseRef.current,
         { boxShadow: "inset 5px 5px 40px white" },
@@ -128,7 +133,6 @@ export default function ParallaxScrollSection() {
         }
       );
 
-      // Burbuja animada con opacidad
       const bubleAnimations = [
         {
           ref: bubleRef,
@@ -150,7 +154,6 @@ export default function ParallaxScrollSection() {
         },
       ];
 
-      // Burbuja: scroll-trigger animation (sobre wrapper)
       bubleAnimations.forEach(({ ref, x, y, scale }) => {
         gsap.fromTo(
           ref.current,
@@ -171,7 +174,6 @@ export default function ParallaxScrollSection() {
         );
       });
 
-      // Flotación idle (sobre inner)
       gsap.utils.toArray(".inner-bubble").forEach((el, i) => {
         gsap.to(el, {
           y: `+=${10 + i * 5}`,
@@ -183,18 +185,6 @@ export default function ParallaxScrollSection() {
         });
       });
 
-      // Texto dentro de la burbuja: movimiento + escala tipo “pulso”
-      gsap.to(textRef.current, {
-        y: "+=5",
-        x: "+=3",
-        scale: 1.05,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        duration: 2.4,
-      });
-
-      // Parallax del texto al hacer scroll
       gsap.to(textRef.current, {
         y: "+=10",
         scrollTrigger: {
@@ -205,15 +195,29 @@ export default function ParallaxScrollSection() {
         },
         ease: "none",
       });
-    }, wrapperRef);
 
-    // Animación palabra por palabra
-    const words = textRef.current.querySelectorAll("span");
-
-    setTimeout(() => {
+      // Animación del texto debajo del canvas
       gsap.fromTo(
-        words,
-        { y: 20 },
+        textRef2.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: textRef2.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+
+      const wordSpans = textRef2.current.querySelectorAll("span");
+
+      gsap.fromTo(
+        wordSpans,
+        { y: 20, opacity: 0 },
         {
           y: 0,
           opacity: 1,
@@ -221,13 +225,13 @@ export default function ParallaxScrollSection() {
           stagger: 0.07,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: wrapperRef2.current,
+            trigger: textRef2.current,
             start: "top 60%",
             toggleActions: "play none none reverse",
           },
         }
       );
-    }, 1000);
+    }, wrapperRef);
 
     return () => {
       ctx.revert();
@@ -235,66 +239,38 @@ export default function ParallaxScrollSection() {
     };
   }, [isMobile]);
 
-  const paragraph = "Interazción con objetos 3D";
-
-  // Lo convertimos en spans
-  const wrappedWords = paragraph.split(" ").map((word, i) => (
-    <span key={i} className="inline-block opacity-0 mr-[5px]">
-      {word}
-    </span>
-  ));
-
   return (
-    <div className="flex flex-col md:flex-row h-[300vh]">
-      {/* IZQUIERDA / ARRIBA EN MÓVIL */}
-      <div ref={wrapperRef} className="relative w-full md:w-1/2 h-full">
+    <div className="flex flex-col md:flex-row">
+      {/* IZQUIERDA */}
+      <div ref={wrapperRef} className="relative w-full md:w-1/2 h-[300vh]">
         <div className="sticky top-0 h-screen flex justify-center items-center px-4">
           <div className="relative w-[300px] h-[300px]">
-            {/* Círculo base con texto */}
             <div
               ref={baseRef}
-              className="absolute flex justify-center items-center inset-0 rounded-full bg-cyan-400/60 z-10 inner-bubble
-               text-center p-4"
+              className="absolute flex justify-center items-center inset-0 rounded-full bg-cyan-400/60 z-10 inner-bubble text-center p-4"
             >
               <p
                 ref={textRef}
                 className="uppercase font-bold leading-tight text-xl p-20"
                 style={{ textShadow: "-2px 2px 4px rgba(0, 0, 0, 0.5)" }}
               >
-                Animaciones con <span className="text-cyan-400">GSAP</span>
+                Animaciones con <b className="text-cyan-400">GSAP</b>
               </p>
             </div>
-            <div
-              ref={bubleRef}
-              className="absolute w-full h-full z-0 overflow-visible"
-            >
-              <div
-                className="rounded-full bg-cyan-400/50 w-full h-full p-[140px] md:p-[155px] inner-bubble backdrop-blur-sm"
-                style={{ boxShadow: "inset -5px 5px 20px white" }}
-              />
-            </div>
 
-            <div
-              ref={bubleRef2}
-              className="absolute w-full h-full z-0 overflow-visible"
-            >
+            {[bubleRef, bubleRef2, bubleRef3].map((ref, i) => (
               <div
-                className="rounded-full bg-cyan-400/50 w-full h-full p-[140px] md:p-[155px] inner-bubble backdrop-blur"
-                style={{ boxShadow: "inset -5px 5px 20px white" }}
-              />
-            </div>
+                key={i}
+                ref={ref}
+                className="absolute w-full h-full z-0 overflow-visible"
+              >
+                <div
+                  className="rounded-full bg-cyan-400/50 w-full h-full p-[140px] md:p-[155px] inner-bubble backdrop-blur-sm"
+                  style={{ boxShadow: "inset -5px 5px 20px white" }}
+                />
+              </div>
+            ))}
 
-            <div
-              ref={bubleRef3}
-              className="absolute w-full h-full z-0 overflow-visible"
-            >
-              <div
-                className="rounded-full bg-cyan-400/50 w-full h-full p-[140px] md:p-[155px] inner-bubble backdrop-blur-sm"
-                style={{ boxShadow: "inset -5px 5px 20px white" }}
-              />
-            </div>
-
-            {/* Círculo negro que se desplaza */}
             <div
               ref={maskRef}
               className="absolute overflow-hidden flex justify-center items-center -top-1 -left-1 w-full h-full rounded-full bg-black z-20"
@@ -308,31 +284,35 @@ export default function ParallaxScrollSection() {
         </div>
       </div>
 
-      {/* DERECHA / ABAJO EN MÓVIL */}
-      <div className="relative w-full md:w-1/2 h-full">
-        {/* Canvas sticky */}
-        <div
-          ref={wrapperRef2}
-          className="sticky top-0 h-screen flex items-center justify-center flex-col pt-20 md:pt-40 z-0"
-        >
-          <Canvas
-            dpr={[1, 1.5]}
-            style={{ touchAction: "none", pointerEvents: "none", zIndex: 20 }}
-            camera={{ position: [0, -6, 10], fov: 1 }}
-          >
-            <ambientLight intensity={0.5} />
-            <Environment preset="city" />
-            <directionalLight position={[-10, 0, 0]} intensity={1} />
-            <LandModel rotationY={rotationY} isMobile={isMobile} />
-            <OrbitControls
-              enableZoom={false}
-              enablePan={false}
-              enableRotate={false}
-            />
-          </Canvas>
+      {/* DERECHA */}
+      <div
+         ref={wrapperRef2}
+        className="relative w-full md:w-1/2 flex flex-col gap-40 py-40 items-center justify-start h-[300vh] pt-40"
+      >
+        <div className="sticky top-32 w-[80%] bg-cyan-300 rounded-xl
+        ">
+          
+          <div className="w-full h-[60vh] flex items-center justify-center">
+            <Canvas
+              dpr={[1, 1.5]}
+              style={{ touchAction: "none", pointerEvents: "none" }}
+              camera={{ position: [0, -6, 10], fov: 1 }}
+            >
+              <ambientLight intensity={0.5} />
+              <Environment preset="city" />
+              <directionalLight position={[0, 0, 0]} intensity={1} />
+              <LandModel rotationY={rotationY} isMobile={isMobile} />
+              <OrbitControls
+                enableZoom={false}
+                enablePan={false}
+                enableRotate={false}
+              />
+            </Canvas>
+          </div>
+
           <p
             ref={textRef2}
-            className="relative text-gray-300 text-lg leading-relaxed max-w-3xl mx-auto text-center z-40"
+            className="text-gray-300 text-lg leading-relaxed max-w-3xl w-fit mx-auto text-center opacity-0 bg-black p-10 m-2 rounded-lg"
           >
             {wrappedWords}
           </p>

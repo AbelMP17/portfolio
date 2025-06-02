@@ -8,6 +8,29 @@ html {
   color: white;
 }
 
+@layer utilities {
+  .animate-cloud {
+    animation: cloudMove 30s linear infinite;
+  }
+
+  .delay-1000 {
+    animation-delay: 1s;
+  }
+
+  .delay-2000 {
+    animation-delay: 2s;
+  }
+
+  @keyframes cloudMove {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100vw);
+    }
+  }
+}
+
 @keyframes pulse-glow {
   0%,
   100% {
