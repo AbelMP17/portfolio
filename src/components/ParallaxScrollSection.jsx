@@ -3,7 +3,8 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, OrbitControls, Environment } from "@react-three/drei";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SiGreensock } from "react-icons/si";
+import MetaBalls from "../utils/MetaBalls";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,14 +31,11 @@ function LandModel({ rotationY, isMobile }) {
 export default function ParallaxScrollSection() {
   const wrapperRef = useRef();
   const wrapperRef2 = useRef();
-  const maskRef = useRef();
   const baseRef = useRef();
-  const bubleRef = useRef();
-  const bubleRef2 = useRef();
-  const bubleRef3 = useRef();
   const textRef = useRef();
   const gsapRef = useRef();
   const textRef2 = useRef();
+  const canvasRef = useRef();
   const rotationY = useRef(Math.PI / 4);
 
   const [isMobile, setIsMobile] = useState(false);
@@ -78,28 +76,6 @@ export default function ParallaxScrollSection() {
         },
       });
 
-      const xMove = isMobile ? 0 : 200;
-      const yMove = isMobile ? 300 : -200;
-
-      gsap.fromTo(
-        maskRef.current,
-        { x: 0, y: 0 },
-        {
-          x: xMove,
-          y: yMove,
-          scale: 0.8,
-          filter: "drop-shadow(0px 0px 30px white)",
-          background: "#fff",
-          scrollTrigger: {
-            trigger: wrapperRef.current,
-            start: "top 60%",
-            end: "bottom top",
-            scrub: true,
-          },
-          ease: "power2.out",
-        }
-      );
-
       gsap.fromTo(
         gsapRef.current,
         { opacity: 0, y: 200 },
@@ -133,56 +109,19 @@ export default function ParallaxScrollSection() {
         }
       );
 
-      const bubleAnimations = [
-        {
-          ref: bubleRef,
-          x: isMobile ? -80 : -200,
-          y: isMobile ? -200 : 200,
-          scale: isMobile ? 0.4 : 0.6,
-        },
-        {
-          ref: bubleRef2,
-          x: isMobile ? 100 : -200,
-          y: isMobile ? -300 : -50,
-          scale: isMobile ? 0.2 : 0.2,
-        },
-        {
-          ref: bubleRef3,
-          x: isMobile ? 80 : -100,
-          y: isMobile ? -200 : 200,
-          scale: isMobile ? 0.1 : 0.1,
-        },
-      ];
-
-      bubleAnimations.forEach(({ ref, x, y, scale }) => {
-        gsap.fromTo(
-          ref.current,
-          { x: 0, y: 0, scale: 1, autoAlpha: 0 },
-          {
-            x,
-            y,
-            scale,
-            autoAlpha: 1,
-            scrollTrigger: {
-              trigger: wrapperRef.current,
-              start: "top 60%",
-              end: "bottom top",
-              scrub: true,
-            },
-            ease: "power2.out",
-          }
-        );
-      });
-
-      gsap.utils.toArray(".inner-bubble").forEach((el, i) => {
-        gsap.to(el, {
-          y: `+=${10 + i * 5}`,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-          duration: 2 + i,
-          delay: i * 0.3,
-        });
+      gsap.to(".inner-bubble", {
+        y: `+=${10 * 5}`,
+        boxShadow: "inset 5px -5px 40px white",
+        borderTopWidth: "0px",
+        borderRightWidth: "2px",
+        borderBottomWidth: "2px",
+        borderLeftWidth: "2px",
+        borderColor: "white",
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        duration: 2,
+        delay: 0.3,
       });
 
       gsap.to(textRef.current, {
@@ -199,15 +138,20 @@ export default function ParallaxScrollSection() {
       // Animación del texto debajo del canvas
       gsap.fromTo(
         textRef2.current,
-        { opacity: 0, y: 50 },
+        { y: 0, boxShadow: "0px 0px 0px #22d3ee", borderWidth: "0px" },
         {
-          opacity: 1,
-          y: 0,
+          y: -50,
+          borderTopWidth: "0px",
+          borderRightWidth: "2px",
+          borderBottomWidth: "2px",
+          borderLeftWidth: "2px",
+          borderColor: "white",
+          boxShadow: "0px 5px 15px #22d3ee",
           duration: 0.5,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: textRef2.current,
-            start: "top 80%",
+            trigger: canvasRef.current,
+            start: "top 20%",
             toggleActions: "play none none reverse",
           },
         }
@@ -226,7 +170,7 @@ export default function ParallaxScrollSection() {
           ease: "power2.out",
           scrollTrigger: {
             trigger: textRef2.current,
-            start: "top 60%",
+            start: "top 70%",
             toggleActions: "play none none reverse",
           },
         }
@@ -243,11 +187,20 @@ export default function ParallaxScrollSection() {
     <div className="flex flex-col md:flex-row">
       {/* IZQUIERDA */}
       <div ref={wrapperRef} className="relative w-full md:w-1/2 h-[300vh]">
-        <div className="sticky top-0 h-screen flex justify-center items-center px-4">
-          <div className="relative w-[300px] h-[300px]">
+        <div className="sticky top-0 h-screen flex justify-center items-center w-full">
+          <div className="relative w-full flex justify-center items-center h-full">
+            <div
+              className="absolute top-20 w-[400px] m-auto rounded-full flex justify-center items-center z-50 pointer-events-none"
+              style={{ boxShadow: "0px 45px 25px white" }}
+            >
+              <div
+                className="p-1 bg-white border-t-[5px] border-[#666] w-[300px] rounded-full"
+                style={{ boxShadow: "0px 25px 30px white" }}
+              />
+            </div>
             <div
               ref={baseRef}
-              className="absolute flex justify-center items-center inset-0 rounded-full bg-cyan-400/60 z-10 inner-bubble text-center p-4"
+              className="absolute flex justify-center items-center inset-0 m-auto rounded-full bg-black/80 backdrop-blur-[3px] z-10 inner-bubble text-center p-4 w-[300px] h-[300px] pointer-events-none"
             >
               <p
                 ref={textRef}
@@ -257,27 +210,25 @@ export default function ParallaxScrollSection() {
                 Animaciones con <b className="text-cyan-400">GSAP</b>
               </p>
             </div>
-
-            {[bubleRef, bubleRef2, bubleRef3].map((ref, i) => (
-              <div
-                key={i}
-                ref={ref}
-                className="absolute w-full h-full z-0 overflow-visible"
-              >
-                <div
-                  className="rounded-full bg-cyan-400/50 w-full h-full p-[140px] md:p-[155px] inner-bubble backdrop-blur-sm"
-                  style={{ boxShadow: "inset -5px 5px 20px white" }}
-                />
-              </div>
-            ))}
-
+            <MetaBalls
+              color="#ffffff"
+              cursorBallColor="#ffffff"
+              cursorBallSize={2}
+              ballCount={15}
+              animationSize={30}
+              enableMouseInteraction={true}
+              enableTransparency={true}
+              hoverSmoothness={0.05}
+              clumpFactor={1}
+              speed={0.3}
+            />
             <div
-              ref={maskRef}
-              className="absolute overflow-hidden flex justify-center items-center -top-1 -left-1 w-full h-full rounded-full bg-black z-20"
+              className="absolute bottom-20 w-[400px] m-auto rounded-full flex justify-center items-center z-50 pointer-events-none"
+              style={{ boxShadow: "0px -45px 25px white" }}
             >
-              <SiGreensock
-                className="text-green-500 text-[200px]"
-                ref={gsapRef}
+              <div
+                className="p-1 bg-white border-b-[5px] border-[#666] w-[300px] rounded-full"
+                style={{ boxShadow: "0px -25px 30px white" }}
               />
             </div>
           </div>
@@ -287,12 +238,13 @@ export default function ParallaxScrollSection() {
       {/* DERECHA */}
       <div
         ref={wrapperRef2}
-        className="relative w-full md:w-1/2 flex flex-col gap-40 py-40 items-center justify-start h-[300vh] pt-40"
+        className="relative w-full md:w-1/2 flex flex-col gap-40 items-center justify-start h-[300vh] pt-40"
       >
-        <div className="sticky top-32 w-[80%] flex flex-col gap-5 rounded-xl">
+        <div className="sticky top-32 w-[80%] flex flex-col gap-5 rounded-xl h-[100vh]">
           <div
+          ref={canvasRef}
             className="relative w-full h-[60vh] flex items-center justify-center bg-cyan-400 rounded-xl border-2 border-t-0 overflow-hidden"
-            style={{ boxShadow: "0px 10px 20px #22d3ee" }}
+            
           >
             <img
               src="cloud.png"
@@ -302,7 +254,7 @@ export default function ParallaxScrollSection() {
             <img
               src="cloudv2.png"
               alt="nube"
-              className="absolute top-[60%] left-[-200px] w-56 opacity-50 cloud-animation cloud-medium z-30"
+              className="absolute top-[60%] left-[-200px] w-56 opacity-80 cloud-animation cloud-medium z-30"
             />
             <img
               src="cloud.png"
@@ -322,7 +274,7 @@ export default function ParallaxScrollSection() {
 
             <Canvas
               dpr={[1, 1.5]}
-              style={{ touchAction: "none", pointerEvents: "none", zIndex: 10}}
+              style={{ touchAction: "none", pointerEvents: "none", zIndex: 10 }}
               camera={{ position: [0, -6, 10], fov: 1 }}
             >
               <ambientLight intensity={0.5} />
@@ -339,8 +291,7 @@ export default function ParallaxScrollSection() {
 
           <p
             ref={textRef2}
-            className="text-gray-300 text-lg leading-relaxed  mx-auto text-center opacity-0 bg-black p-8 rounded-lg border-2 border-t-0"
-            style={{ boxShadow: "0px 10px 20px #22d3ee" }}
+            className="text-gray-300 text-lg leading-relaxed mx-auto text-center bg-black p-8 rounded-lg border-t-0 border-solid border-cyan-400"
           >
             {wrappedWords}
           </p>

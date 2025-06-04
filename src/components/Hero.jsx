@@ -59,6 +59,7 @@ export default function Hero() {
       id="hero"
       className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-4 md:px-12 text-white bg-black overflow-hidden"
     >
+      
       {/* FONDO ILUMINADO */}
       <div className="absolute -top-64 left-[-200px] w-full md:w-[600px] h-[600px] rounded-full bg-white blur-3xl opacity-10 animate-light-pulse pointer-events-none z-0" />
 
