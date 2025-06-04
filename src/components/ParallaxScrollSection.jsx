@@ -186,7 +186,7 @@ export default function ParallaxScrollSection() {
   return (
     <div className="flex flex-col md:flex-row">
       {/* IZQUIERDA */}
-      <div ref={wrapperRef} className="relative w-full md:w-1/2 h-[300vh]">
+      <div ref={wrapperRef} className="relative w-full md:w-1/2 h-[100vh] md:h-[300vh]">
         <div className="sticky top-0 h-screen flex justify-center items-center w-full">
           <div className="relative w-full flex justify-center items-center h-full pointer-events-none md:pointer-events-auto overflow-hidden">
             <div
