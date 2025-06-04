@@ -42,7 +42,7 @@ export default function ParallaxScrollSection() {
 
   const [isMobile, setIsMobile] = useState(false);
 
-  const paragraph = "Interazción con objetos 3D";
+  const paragraph = "Interacción con objetos 3D";
 
   const wrappedWords = paragraph.split(" ").map((word, i) => (
     <span key={i} className="inline-block opacity-0 mr-[5px]">
@@ -286,16 +286,43 @@ export default function ParallaxScrollSection() {
 
       {/* DERECHA */}
       <div
-         ref={wrapperRef2}
+        ref={wrapperRef2}
         className="relative w-full md:w-1/2 flex flex-col gap-40 py-40 items-center justify-start h-[300vh] pt-40"
       >
-        <div className="sticky top-32 w-[80%] bg-cyan-300 rounded-xl
-        ">
-          
-          <div className="w-full h-[60vh] flex items-center justify-center">
+        <div className="sticky top-32 w-[80%] flex flex-col gap-5 rounded-xl">
+          <div
+            className="relative w-full h-[60vh] flex items-center justify-center bg-cyan-400 rounded-xl border-2 border-t-0 overflow-hidden"
+            style={{ boxShadow: "0px 10px 20px #22d3ee" }}
+          >
+            <img
+              src="cloud.png"
+              alt="nube"
+              className="absolute top-10 left-[-150px] w-40 cloud-animation cloud-slow z-30"
+            />
+            <img
+              src="cloudv2.png"
+              alt="nube"
+              className="absolute top-[60%] left-[-200px] w-56 opacity-50 cloud-animation cloud-medium z-30"
+            />
+            <img
+              src="cloud.png"
+              alt="nube"
+              className="absolute top-[30%] left-[-180px] w-48 opacity-60 cloud-animation cloud-fast"
+            />
+            <img
+              src="cloudv2.png"
+              alt="nube"
+              className="absolute top-[40%] left-[-100px] w-56 opacity-50 cloud-animation cloud-medium"
+            />
+            <img
+              src="cloud.png"
+              alt="nube"
+              className="absolute top-[50%] left-[-120px] w-48 opacity-60 cloud-animation cloud-fast z-30"
+            />
+
             <Canvas
               dpr={[1, 1.5]}
-              style={{ touchAction: "none", pointerEvents: "none" }}
+              style={{ touchAction: "none", pointerEvents: "none", zIndex: 10}}
               camera={{ position: [0, -6, 10], fov: 1 }}
             >
               <ambientLight intensity={0.5} />
@@ -312,7 +339,8 @@ export default function ParallaxScrollSection() {
 
           <p
             ref={textRef2}
-            className="text-gray-300 text-lg leading-relaxed max-w-3xl w-fit mx-auto text-center opacity-0 bg-black p-10 m-2 rounded-lg"
+            className="text-gray-300 text-lg leading-relaxed  mx-auto text-center opacity-0 bg-black p-8 rounded-lg border-2 border-t-0"
+            style={{ boxShadow: "0px 10px 20px #22d3ee" }}
           >
             {wrappedWords}
           </p>

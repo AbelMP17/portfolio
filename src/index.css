@@ -121,3 +121,29 @@ html {
     scrollbar-width: none;
   }
   
+  @layer utilities {
+  @keyframes cloudScroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(400%);
+    }
+  }
+
+  .cloud-animation {
+    animation: cloudScroll linear infinite;
+  }
+
+  .cloud-slow {
+    animation-duration: 40s;
+  }
+
+  .cloud-medium {
+    animation-duration: 30s;
+  }
+
+  .cloud-fast {
+    animation-duration: 25s;
+  }
+}
