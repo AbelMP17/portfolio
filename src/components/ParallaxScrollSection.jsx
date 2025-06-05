@@ -4,7 +4,7 @@ import { useGLTF, OrbitControls, Environment } from "@react-three/drei";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import MetaBalls from "../utils/MetaBalls";
-
+import Particles from '../utils/Particles';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -186,11 +186,14 @@ export default function ParallaxScrollSection() {
   return (
     <div className="flex flex-col md:flex-row">
       {/* IZQUIERDA */}
-      <div ref={wrapperRef} className="relative w-full md:w-1/2 h-[100vh] md:h-[300vh]">
+      <div
+        ref={wrapperRef}
+        className="relative w-full md:w-1/2 h-[100vh] md:h-[300vh]"
+      >
         <div className="sticky top-0 h-screen flex justify-center items-center w-full">
           <div className="relative w-full flex justify-center items-center h-full pointer-events-none md:pointer-events-auto overflow-hidden">
             <div
-              className="absolute top-20 w-[400px] m-auto rounded-full rounded-t-none flex justify-center items-center z-50 pointer-events-none"
+              className="absolute top-16 w-[400px] m-auto rounded-full rounded-t-none flex justify-center items-center z-50 pointer-events-none"
               style={{ boxShadow: "0px 45px 25px white" }}
             >
               <div
@@ -223,7 +226,7 @@ export default function ParallaxScrollSection() {
               speed={0.3}
             />
             <div
-              className="absolute bottom-20 w-[400px] m-auto rounded-full rounded-b-none flex justify-center items-center z-50 pointer-events-none"
+              className="absolute bottom-1 w-[400px] m-auto rounded-full rounded-b-none flex justify-center items-center z-50 pointer-events-none"
               style={{ boxShadow: "0px -45px 25px white" }}
             >
               <div
@@ -242,40 +245,53 @@ export default function ParallaxScrollSection() {
       >
         <div className="sticky top-32 w-[80%] flex flex-col gap-5 rounded-xl h-[100vh]">
           <div
-          ref={canvasRef}
-            className="relative w-full h-[60vh] flex items-center justify-center bg-cyan-400 rounded-xl border-2 border-t-0 overflow-hidden"
-            
+            ref={canvasRef}
+            className="relative w-full h-[60vh] flex items-center justify-center bg-[#001] rounded-xl border-2 border-t-0 overflow-hidden"
           >
+            
+            <div
+              style={{ width: "100%", height: "100%", position: "absolute" }}
+            >
+              <Particles
+                particleColors={["#ffffff", "#ffffff"]}
+                particleCount={200}
+                particleSpread={20}
+                speed={0.1}
+                particleBaseSize={50}
+                moveParticlesOnHover={true}
+                alphaParticles={false}
+                disableRotation={true}
+              />
+            </div>
             <img
               src="cloud.png"
               alt="nube"
-              className="absolute top-10 left-[-150px] w-40 cloud-animation cloud-slow z-30"
+              className="absolute top-10 left-[-150px] w-40 cloud-animation cloud-slow z-30 pointer-events-none"
             />
             <img
               src="cloudv2.png"
               alt="nube"
-              className="absolute top-[60%] left-[-200px] w-56 opacity-80 cloud-animation cloud-medium z-30"
+              className="absolute top-[60%] left-[-200px] w-56 opacity-80 cloud-animation cloud-medium z-30 pointer-events-none"
             />
             <img
               src="cloud.png"
               alt="nube"
-              className="absolute top-[30%] left-[-180px] w-48 opacity-60 cloud-animation cloud-fast"
+              className="absolute top-[30%] left-[-180px] w-48 opacity-60 cloud-animation cloud-fast pointer-events-none"
             />
             <img
               src="cloudv2.png"
               alt="nube"
-              className="absolute top-[40%] left-[-100px] w-56 opacity-50 cloud-animation cloud-medium"
+              className="absolute top-[40%] left-[-100px] w-56 opacity-50 cloud-animation cloud-medium pointer-events-none"
             />
             <img
               src="cloud.png"
               alt="nube"
-              className="absolute top-[50%] left-[-120px] w-48 opacity-60 cloud-animation cloud-fast z-30"
+              className="absolute top-[50%] left-[-120px] w-48 opacity-60 cloud-animation cloud-fast z-30 pointer-events-none"
             />
-
             <Canvas
               dpr={[1, 1.5]}
               style={{ touchAction: "none", pointerEvents: "none", zIndex: 10 }}
-              camera={{ position: [0, -6, 10], fov: 1 }}
+              camera={{ position: [0, -7, 10], fov: 1 }}
             >
               <ambientLight intensity={0.5} />
               <Environment preset="city" />
