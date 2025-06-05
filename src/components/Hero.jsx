@@ -85,8 +85,8 @@ export default function Hero() {
           rotation={45}
         />
       </div>
-      {/* FONDO ILUMINADO */}
-      <div className="absolute -top-64 left-[-200px] w-full md:w-[600px] h-[600px] rounded-full bg-white blur-3xl opacity-10 animate-light-pulse pointer-events-none z-0" />
+      {/* FONDO ILUMINADO <div className="absolute -top-64 left-[-200px] w-full md:w-[600px] h-[600px] rounded-full bg-white blur-3xl opacity-10 animate-light-pulse pointer-events-none z-0" />*/}
+      
       {/* ILUSTRACIÓN */}
       <div className="flex justify-center mb-6 lg:mb-0 lg:flex-1 z-10">
         <img
