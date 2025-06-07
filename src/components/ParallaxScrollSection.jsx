@@ -192,15 +192,7 @@ export default function ParallaxScrollSection() {
       >
         <div className="sticky top-0 h-screen flex justify-center items-center w-full">
           <div className="relative w-full flex justify-center items-center h-full pointer-events-none md:pointer-events-auto overflow-hidden">
-            <div
-              className="absolute top-16 w-[400px] m-auto rounded-full rounded-t-none flex justify-center items-center z-50 pointer-events-none"
-              style={{ boxShadow: "0px 45px 25px white" }}
-            >
-              <div
-                className="p-1 bg-white border-t-[5px] border-[#666] w-[300px] rounded-full"
-                style={{ boxShadow: "0px 25px 30px white" }}
-              />
-            </div>
+            
             <div
               ref={baseRef}
               className="absolute flex justify-center items-center inset-0 m-auto rounded-full bg-black/80 backdrop-blur-[3px] z-10 inner-bubble text-center p-4 w-[300px] h-[300px] pointer-events-none"

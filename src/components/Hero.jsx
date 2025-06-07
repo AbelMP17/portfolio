@@ -65,12 +65,12 @@ export default function Hero() {
     }, []);
 
     const heightBeams = isMobile ? '1000px': '1200px';
-    const widthBeams = isMobile ? '800px': '1600px';
+    const widthBeams = isMobile ? '800px': '2500px';
   return (
     <section
       ref={heroRef}
       id="hero"
-      className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-4 md:px-12 text-white bg-black overflow-hidden relative"
+      className="min-h-screen min-w-full flex flex-col lg:flex-row items-center justify-center text-white bg-black overflow-hidden relative"
       style={{boxShadow: 'inset 0px 10px 30px black'}}
     >
       <div style={{ width: widthBeams, height: heightBeams, position: "absolute" }}>
@@ -85,7 +85,6 @@ export default function Hero() {
           rotation={45}
         />
       </div>
-      {/* FONDO ILUMINADO <div className="absolute -top-64 left-[-200px] w-full md:w-[600px] h-[600px] rounded-full bg-white blur-3xl opacity-10 animate-light-pulse pointer-events-none z-0" />*/}
       
       {/* ILUSTRACIÓN */}
       <div className="flex justify-center mb-6 lg:mb-0 lg:flex-1 z-10">
@@ -121,6 +120,8 @@ export default function Hero() {
         </div>
       </div>
       <div className="absolute w-[100%] h-[200px] bottom-0 bg-gradient-to-t from-black to-transparent" />
+      <div className="absolute w-[200px] h-[100vh] left-0 bg-gradient-to-r from-black to-transparent" />
+      <div className="absolute w-[200px] h-[100vh] right-0 bg-gradient-to-l from-black to-transparent" />
     </section>
   );
 }

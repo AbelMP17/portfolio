@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SkillsClásicas from "./Skills";
 import SkillsCanicas2D from "./SkillsCanicas2D";
 import gsap from "gsap";
@@ -6,6 +6,32 @@ import gsap from "gsap";
 export default function SkillsSection() {
   const [modoCanica, setModoCanica] = useState(false);
   const sectionRef = useRef(null);
+  const buttonRef = useRef(null);
+  const [ripples, setRipples] = useState([]);
+
+  const handleClick = (e) => {
+    const button = buttonRef.current;
+    const rect = button.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const newRipple = {
+      x,
+      y,
+      id: Date.now(),
+    };
+
+    setRipples((prev) => [...prev, newRipple]);
+    setModoCanica(!modoCanica);
+
+    // Remove ripple after 1s
+    setTimeout(() => {
+      setRipples((prev) => prev.filter((r) => r.id !== newRipple.id));
+    }, 1000);
+  };
+
+useEffect(() => {
+  if (!sectionRef.current) return;
 
   gsap.fromTo(
     sectionRef.current,
@@ -22,6 +48,7 @@ export default function SkillsSection() {
       },
     }
   );
+}, []);
 
   return (
     <section ref={sectionRef} id="skills" className="relative">
@@ -31,10 +58,25 @@ export default function SkillsSection() {
       </h2>
       <div className="hidden md:flex justify-center items-center">
         <button
-          onClick={() => setModoCanica(!modoCanica)}
-          className="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold px-5 py-2 rounded-full shadow-md transition"
+          ref={buttonRef}
+          onClick={handleClick}
+          className="relative overflow-hidden px-6 py-3 rounded-full bg-cyan-600 text-white font-bold transition duration-300 hover:bg-cyan-700"
         >
           Cambiar a vista {modoCanica ? "clásica" : "canal"}
+          {ripples.map((ripple) => (
+            <span
+              key={ripple.id}
+              className="absolute block rounded-full bg-white opacity-30 pointer-events-none animate-ripple"
+              style={{
+                top: ripple.y,
+                left: ripple.x,
+                width: 200,
+                height: 200,
+                marginTop: -100,
+                marginLeft: -100,
+              }}
+            />
+          ))}
         </button>
       </div>
 
