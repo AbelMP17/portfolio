@@ -60,7 +60,7 @@ useEffect(() => {
         <button
           ref={buttonRef}
           onClick={handleClick}
-          className="relative overflow-hidden px-6 py-3 rounded-full bg-cyan-600 text-white font-bold transition duration-300 hover:bg-cyan-700"
+          className="relative overflow-hidden mb-6 px-6 py-3 rounded-full bg-cyan-600 text-white font-bold transition duration-300 hover:bg-cyan-700"
         >
           Cambiar a vista {modoCanica ? "clásica" : "canal"}
           {ripples.map((ripple) => (
