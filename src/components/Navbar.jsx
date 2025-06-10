@@ -27,7 +27,11 @@ export default function Navbar() {
       const scrollPos = window.scrollY + window.innerHeight / 2;
       const index = sections.findIndex((sec, i) => {
         const next = sections[i + 1];
-        return sec && scrollPos >= sec.offsetTop && (!next || scrollPos < next.offsetTop);
+        return (
+          sec &&
+          scrollPos >= sec.offsetTop &&
+          (!next || scrollPos < next.offsetTop)
+        );
       });
       if (index !== -1 && index !== activeIndex) {
         setActiveIndex(index);
@@ -53,7 +57,10 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target)
+      ) {
         setIsOpen(false);
       }
     };
@@ -65,12 +72,24 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed w-full z-50 top-0 left-0 transition-all duration-300 px-4 py-1 md:py-4 md:px-8 backdrop-blur-md border-b border-white/10 ${
+      className={`fixed w-full z-50 top-0 left-0 transition-all duration-300 px-4 py-1 md:py-2 md:px-8 backdrop-blur-md border-b border-white/10 ${
         scrolled ? "bg-black/70 shadow-lg" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <a href="#hero" className="text-cyan-400 font-bold text-xl">
+        <a
+          href="#hero"
+          className="text-cyan-400 font-bold text-xl flex justify-normal items-center gap-5"
+        >
+          <div className="relative w-[45px] h-[45px] md:w-[70px] md:h-[70px] flex justify-center items-center">
+            <img
+              src="/perfil.webp"
+              alt="perfil"
+              className="absolute w-[40px] h-[40px] md:w-[65px] md:h-[65px] rounded-full z-10"
+            />
+            <div className="w-[43px] h-[42px] md:w-[69px] md:h-[69px] m-auto bg-transparent absolute left-0 rounded-full z-0 border-r-[8px] border-white md:px-[32px] animate-spin-slow"/>
+            <div className="w-[43px] h-[42px] md:w-[69px] md:h-[69px] m-auto bg-transparent blur-sm absolute left-0 rounded-full z-0 border-r-[10px] border-white md:px-[32px] animate-spin-slow"/>
+          </div>
           DevAbel
         </a>
 
@@ -97,7 +116,11 @@ export default function Navbar() {
         </div>
 
         <div className="md:hidden text-white">
-          <button className="pt-2" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Menu">
+          <button
+            className="pt-2"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle Menu"
+          >
             {isOpen ? <X /> : <Menu />}
           </button>
         </div>
