@@ -14,6 +14,20 @@ const allProjects = [
     link: "https://kloesmashburger.com/",
   },
   {
+    title: "Rick & Morty Page",
+    description: "Una web interactiva para moverse por el mundo de RIck & Morty.",
+    image: "/rnm.webp",
+    tech: ["React", "Tailwind", "Three.js"],
+    link: "https://rnm3d.vercel.app/",
+  },
+  {
+    title: "Movie & Series Library",
+    description: "Web para poder navegar entre todas las peliculas y series del mundo, donde puedes crear tu lista de favoritas.",
+    image: "/mb.webp",
+    tech: ["React", "Tailwind"],
+    link: "https://movie-buster.vercel.app/",
+  },
+  {
     title: "Landing Simulada",
     description: "Reconstrucción de una landing como Apple Store",
     image: "/iphone.webp",
