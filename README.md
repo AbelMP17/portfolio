@@ -69,7 +69,7 @@ La aplicación se ejecutará en: http://localhost:5173 (o el puerto que indique 
 
 ## 👨‍💻 Autor
 
-Desarrollado y diseñado por **Abel Martín Pérez**  
+Desarrollado y diseñado por **Abel Martínez Peinado**  
 🐙 GitHub: https://github.com/AbelMP17 
 
 ---
