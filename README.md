@@ -1,12 +1,77 @@
-# React + Vite
+# 💼 Portfolio – Abel Martínez Peinado
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este es mi **portafolio personal**, desarrollado para mostrar mi trabajo como **Desarrollador y Diseñador Web**, combinando tecnología moderna con un enfoque creativo, fluido y altamente visual.  
+El objetivo de este sitio es reflejar mi estilo profesional: **interfaces limpias, interactivas y con identidad propia.**
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Stack Tecnológico
 
-## Expanding the ESLint configuration
+- ⚛️ **React** + **Vite**
+- 🎨 **TailwindCSS** para diseño rápido y responsive
+- 🎞️ **GSAP** y/o **Framer Motion** (si aplica) para animaciones y transiciones
+- 🧭 **ThreeJS** para más inmersión
+- ☁️ **Vercel** como plataforma de despliegue
+- 🧠 **Figma** para diseño UX/UI y prototipado
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+> Nota: este repo usa React + Vite (no Next.js ni TypeScript).
+
+---
+
+## ✨ Características principales
+
+- 🌈 **Diseño visual personalizado** con tipografía y esquema de color coherente
+- 🎬 **Animaciones fluidas** para reforzar la identidad del sitio
+- 🧭 **Navegación intuitiva** (Sobre mí, Proyectos, Contacto, etc.)
+- 📱 **Responsive Design** para todos los dispositivos
+- ⚡ **Alto rendimiento** gracias a Vite
+
+---
+
+## 🧩 Instalación local
+
+```
+bash
+
+git clone https://github.com/AbelMP17/portfolio.git
+
+cd portfolio
+npm install
+npm run dev
+```
+
+La aplicación se ejecutará en: http://localhost:5173 (o el puerto que indique Vite)
+
+---
+
+## 🖼️ Capturas
+
+*(Agrega aquí imágenes o GIFs mostrando home, proyectos y contacto.)*
+
+---
+
+## 🧠 Aprendizajes y Retos Técnicos
+
+- Integración de **animaciones** sin comprometer rendimiento.
+- Arquitectura **modular** con componentes reutilizables.
+- Cuidado de **performance y accesibilidad** (Core Web Vitals).
+- Cohesión entre **marca personal** y experiencia de usuario.
+
+---
+
+## 📦 Próximas mejoras
+
+- 🌙 Modo oscuro / claro
+- 📧 Formulario de contacto con automatizaciones (n8n / email API)
+- 🌐 i18n (ES/EN)
+
+---
+
+## 👨‍💻 Autor
+
+Desarrollado y diseñado por **Abel Martín Pérez**  
+🐙 GitHub: https://github.com/AbelMP17 
+
+---
+
+> _“Mi objetivo es crear experiencias web que inspiren visualmente y funcionen con precisión técnica.”_
