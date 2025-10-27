@@ -44,12 +44,6 @@ La aplicación se ejecutará en: http://localhost:5173 (o el puerto que indique 
 
 ---
 
-## 🖼️ Capturas
-
-*(Agrega aquí imágenes o GIFs mostrando home, proyectos y contacto.)*
-
----
-
 ## 🧠 Aprendizajes y Retos Técnicos
 
 - Integración de **animaciones** sin comprometer rendimiento.
